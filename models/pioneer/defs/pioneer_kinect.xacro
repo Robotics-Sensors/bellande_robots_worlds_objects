@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- Define a macro to add a kinect sensor to the model based on given parameters. -->
+  <xacro:macro name="add_kinect" params="descriptor x y height pan tilt far_clip">
+    <xacro:property name="robot_height" value="0.24" />
+    <xacro:property name="stand_length" value="${ height - robot_height - 0.045 }" />
+    <xacro:property name="stand_height" value="${ robot_height + (stand_length / 2) }" />
+
+    <link name='${descriptor}_camera_link'>
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.1"/>
+        <inertia
+          ixx="1.0" ixy="0.0" ixz="0.0"
+          iyy="1.0" iyz="0.0"
+          izz="1.0"/>
+      </inertial>
+
+      <collision>
+        <origin xyz="-0.03 0 -0.016" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.073 0.276 0.072"/>
+        </geometry>
+      </collision>
+
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="file://$(arg model_dir)/kinect.dae" />
+        </geometry>
+      </visual>
+    </link>
+    <gazebo reference='${descriptor}_camera_link'>
+      <sensor name='${descriptor}_camera' type='depth'>
+        <pose>10 0 0 0 1.57 1.57</pose>
+        <update_rate>20</update_rate>
+        <camera name='__default__'>
+          <horizontal_fov>1.0472</horizontal_fov>
+          <image>
+            <width>640</width>
+            <height>480</height>
+            <format>R8G8B8</format>
+          </image>
+          <clip>
+            <near>0.05</near>
+            <far>${far_clip}</far>
+          </clip>
+        </camera>
+        <plugin name='${descriptor}_camera_plugin' filename='libgazebo_ros_openni_kinect.so'>
+          <baseline>0.2</baseline>
+          <alwaysOn>true</alwaysOn>
+          <updateRate>15.0</updateRate> <!-- 20 -->
+          <cameraName>${descriptor}</cameraName>
+          <imageTopicName>/${descriptor}/rgb/image_raw</imageTopicName>
+          <cameraInfoTopicName>/${descriptor}/depth/camera_info</cameraInfoTopicName>
+          <depthImageTopicName>/${descriptor}/depth/image_raw</depthImageTopicName>
+          <depthImageInfoTopicName>/${descriptor}/depth/camera_info</depthImageInfoTopicName>
+          <pointCloudTopicName>/${descriptor}/depth/points</pointCloudTopicName>
+          <frameName>${descriptor}_sensor_link</frameName>
+          <pointCloudCutoff>0.05</pointCloudCutoff>
+          <distortionK1>0</distortionK1>
+          <distortionK2>0</distortionK2>
+          <distortionK3>0</distortionK3>
+          <distortionT1>0</distortionT1>
+          <distortionT2>0</distortionT2>
+          <CxPrime>0</CxPrime>
+          <Cx>0</Cx>
+          <Cy>0</Cy>
+          <focalLength>0</focalLength>
+          <hackBaseline>0</hackBaseline>
+        </plugin>
+        <always_on>1</always_on>
+        <visualize>1</visualize>
+      </sensor>
+    </gazebo>
+
+    <link name='${descriptor}_stand_link'>
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.1"/>
+        <inertia
+          ixx="1.0" ixy="0.0" ixz="0.0"
+          iyy="1.0" iyz="0.0"
+          izz="1.0"/>
+      </inertial>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <cylinder radius="0.02" length="${stand_length}" />
+        </geometry>
+      </collision>
+
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <cylinder radius="0.02" length="${stand_length}" />
+        </geometry>
+        <material name="red">
+          <color rgba="1 0 0 1" />
+        </material>
+      </visual>
+    </link>
+    <gazebo reference="${descriptor}_stand_link">
+    	<material value="Gazebo/Red"/>
+    </gazebo>
+
+    <link name='${descriptor}_sensor_link'>
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.01"/>
+        <inertia
+          ixx="1.0" ixy="0.0" ixz="0.0"
+          iyy="1.0" iyz="0.0"
+          izz="1.0"/>
+      </inertial>
+    </link>
+
+    <joint name='base_to_stand_joint' type='fixed'>
+      <origin xyz="${x} ${y} ${stand_height}" rpy="0 0 ${pan}" />
+      <parent link="base_link" />
+      <child link="${descriptor}_stand_link" />
+    </joint>
+
+    <joint name='stand_to_camera_joint' type='fixed'>
+      <origin xyz="${x-0.02} ${y} ${(stand_length/2)+0.035}" rpy="0 ${tilt} 0" />
+      <parent link="${descriptor}_stand_link" />
+      <child link="${descriptor}_camera_link" />
+    </joint>
+
+    <joint name='camera_to_sensor_joint' type='fixed'>
+      <origin xyz="0 0 0" rpy="-1.57 0 -1.57" />
+      <parent link="${descriptor}_camera_link" />
+      <child link="${descriptor}_sensor_link" />
+    </joint>
+
+  </xacro:macro>
+
+</robot>

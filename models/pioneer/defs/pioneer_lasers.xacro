@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- Define a macro to add a laser sensor to the model based on given parameters. -->
+  <xacro:macro name="add_laser" params="descriptor visualize x y z yaw min max samples range">
+    <link name='hokuyo_${descriptor}_link'>
+      <!-- Not even slightly accurate -->
+      <inertial>
+        <origin xyz="0 0 -0.025" rpy="0 0 0"/>
+        <mass value="0.1"/>
+        <inertia
+          ixx="1.0" ixy="0.0" ixz="0.0"
+          iyy="1.0" iyz="0.0"
+          izz="1.0"/>
+      </inertial>
+
+      <collision>
+        <origin xyz="0 0 -0.025" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.05 0.05 0.075"/>
+        </geometry>
+      </collision>
+
+      <visual>
+        <origin xyz="0 0 -0.025" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="file://$(arg model_dir)/hokuyo.dae" />
+        </geometry>
+      </visual>
+
+    </link>
+    <gazebo reference='hokuyo_${descriptor}_link'>
+      <sensor name='${descriptor}laser' type='ray'>
+        <pose frame=''>0 0 0 0 0 0</pose>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>${samples}</samples>
+              <resolution>1</resolution>
+              <min_angle>${min}</min_angle>
+              <max_angle>${max}</max_angle>
+            </horizontal>
+            <vertical>
+              <samples>1</samples>
+              <min_angle>0</min_angle>
+              <max_angle>0</max_angle>
+            </vertical>
+          </scan>
+          <range>
+            <min>0.08</min>
+            <max>${range}</max>
+            <resolution>0.01</resolution>
+          </range>
+        </ray>
+        <plugin name='${descriptor}laser' filename='libgazebo_ros_laser.so'>
+          <!-- model_name is an argument sent to the top level xml file (when setting robot_description) -->
+          <topicName>${descriptor}scan</topicName>
+          <frameName>hokuyo_${descriptor}_link</frameName>
+        </plugin>
+        <always_on>1</always_on>
+        <update_rate>20</update_rate> <!-- 30 -->
+        <visualize>${visualize}</visualize>
+      </sensor>
+    </gazebo>
+
+    <!-- Specify where the sensor link is in relation to base_link -->
+    <joint name='base_${descriptor}_hokuyo' type='fixed'>
+      <origin xyz="${x} ${y} ${z}" rpy="0 0 ${yaw}" />
+      <parent link="base_link" />
+      <child link="hokuyo_${descriptor}_link" />
+    </joint>
+
+  </xacro:macro>
+
+</robot>
