@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(robotic_world)
+project(robots_and_world)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -99,10 +99,10 @@ find_package(catkin REQUIRED)
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES navigation_resources
-#  CATKIN_DEPENDS other_catkin_pkg
-#  DEPENDS system_lib
+  #  INCLUDE_DIRS include
+  #  LIBRARIES navigation_resources
+  #  CATKIN_DEPENDS other_catkin_pkg
+  #  DEPENDS system_lib
 )
 
 ###########
@@ -112,8 +112,8 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-# include
-# ${catkin_INCLUDE_DIRS}
+  # include
+  # ${catkin_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
