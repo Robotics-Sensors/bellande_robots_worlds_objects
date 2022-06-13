@@ -1,19 +1,19 @@
 <?xml version='1.0'?>
 <sdf version='1.6'>
-  <model name='demo_cube_green'>
+  <model name='green_cube'>
     <link name='link'>
-          <inertial>
-          <mass>0.05</mass>
-          <inertia>
-            <ixx>0.001</ixx>
-            <ixy>0.000000</ixy>
-            <ixz>0.000000</ixz>
-            <iyy>0.001</iyy>
-            <iyz>0.000000</iyz>
-            <izz>0.001</izz>
-          </inertia>
-        </inertial>
-       <visual name='visual'>
+      <inertial>
+        <mass>0.05</mass>
+        <inertia>
+          <ixx>0.001</ixx>
+          <ixy>0.000000</ixy>
+          <ixz>0.000000</ixz>
+          <iyy>0.001</iyy>
+          <iyz>0.000000</iyz>
+          <izz>0.001</izz>
+        </inertia>
+      </inertial>
+      <visual name='visual'>
         <pose frame=''>0 0 -0.05 0 -0 0</pose>
         <geometry>
           <mesh>
@@ -45,7 +45,7 @@
         </geometry>
       </collision> -->
 
-       <collision name='collision'>
+      <collision name='collision'>
         <laser_retro>0</laser_retro>
         <max_contacts>10</max_contacts>
         <pose frame=''>0 0 0 0 -0 0</pose>

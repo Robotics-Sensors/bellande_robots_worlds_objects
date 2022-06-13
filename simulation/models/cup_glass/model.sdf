@@ -3,7 +3,7 @@
   <model name='cup_glass'>
     <link name='link_16'>
       <pose frame=''>0 0 0 0 0 0</pose>
-       <visual name='visual'>
+      <visual name='visual'>
         <pose frame=''>0 0 0 0 -0 0</pose>
         <geometry>
           <mesh>
@@ -34,7 +34,7 @@
             <scale>1 1 1</scale>
           </mesh>
         </geometry>
-       </collision>
+      </collision>
     </link>
     <static>o</static>
     <allow_auto_disable>1</allow_auto_disable>
