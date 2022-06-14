@@ -1,21 +1,14 @@
-ARARG ML_ARCHITECTURE_VERSION=latest
-
 FROM ubuntu:20.04 as base_build
-FROM nvidia/cuda:11.2.1-base-ubuntu20.04
-
 ENV DEBIAN_FRONTEND noninteractive
 ENV PYTHON_VERSION="3.8"
-ENV CUDNN_VERSION=8.1.0.77
-ENV TF_TENSORRT_VERSION=7.2.2
-ENV CUDA=11.2
-ENV LD_LIBRARY_PATH /usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH
+ARG BASE_IMAGE=nvcr.io/nvidia/l4t-base:r32.5.0
 
-ARG ML_ARCHITECTURE_VERSION_GIT_BRANCH=master
-ARG ML_ARCHITECTURE_VERSION_GIT_COMMIT=HEAD
+ARG ROS_ENVIROMENT_VERSION_GIT_BRANCH=master
+ARG ROS_ENVIROMENT_VERSION_GIT_COMMIT=HEAD
 
 LABEL maintainer=ronaldsonbellande@gmail.com
-LABEL ml_architecture_github_branchtag=${ML_ARCHITECTURE_VERSION_GIT_BRANCH}
-LABEL ml_architecture_github_commit=${ML_ARCHITECTURE_VERSION_GIT_COMMIT}
+LABEL ros_enviroment_github_branchtag=${ROS_ENVIROMENT_VERSION_GIT_BRANCH}
+LABEL ros_enviroment_github_commit=${ROS_ENVIROMENT_VERSION_GIT_COMMIT}
 
 # Ubuntu setup
 RUN apt-get update -y
@@ -24,6 +17,52 @@ RUN apt-get upgrade -y
 # RUN workspace and sourcing
 WORKDIR ./
 COPY requirements.txt .
+
+ARG ROS_PKG=ros_base
+ENV ROS_DISTRO=noetic
+ENV ROS_ROOT=/opt/ros/${ROS_DISTRO}
+ENV DEBIAN_FRONTEND=noninteractive
+
+# add the ROS deb repo to the apt sources list
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    git \
+		cmake \
+		build-essential \
+		curl \
+		wget \
+		gnupg2 \
+		lsb-release \
+		ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+RUN curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | apt-key add -
+
+
+# install bootstrap dependencies
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+          libpython3-dev \
+          python3-rosdep \
+          python3-rosinstall-generator \
+          python3-vcstool \
+          build-essential && \
+    rosdep init && \
+    rosdep update && \
+    rm -rf /var/lib/apt/lists/*
+
+
+# download/build the ROS source
+RUN mkdir ros_catkin_ws && \
+    cd ros_catkin_ws && \
+    rosinstall_generator ${ROS_PKG} vision_msgs --rosdistro ${ROS_DISTRO} --deps --tar > ${ROS_DISTRO}-${ROS_PKG}.rosinstall && \
+    mkdir src && \
+    vcs import --input ${ROS_DISTRO}-${ROS_PKG}.rosinstall ./src && \
+    apt-get update && \
+    rosdep install --from-paths ./src --ignore-packages-from-source --rosdistro ${ROS_DISTRO} --skip-keys python3-pykdl -y && \
+    python3 ./src/catkin/bin/catkin_make_isolated --install --install-space ${ROS_ROOT} -DCMAKE_BUILD_TYPE=Release && \
+    rm -rf /var/lib/apt/lists/*
 
  # Install dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \

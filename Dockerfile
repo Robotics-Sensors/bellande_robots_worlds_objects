@@ -2,7 +2,6 @@ FROM ubuntu:20.04 as base_build
 ENV DEBIAN_FRONTEND noninteractive
 ENV PYTHON_VERSION="3.8"
 ARG BASE_IMAGE=nvcr.io/nvidia/l4t-base:r32.5.0
-FROM ${BASE_IMAGE}
 
 ARG ROS_ENVIROMENT_VERSION_GIT_BRANCH=master
 ARG ROS_ENVIROMENT_VERSION_GIT_COMMIT=HEAD
@@ -64,11 +63,6 @@ RUN mkdir ros_catkin_ws && \
     rosdep install --from-paths ./src --ignore-packages-from-source --rosdistro ${ROS_DISTRO} --skip-keys python3-pykdl -y && \
     python3 ./src/catkin/bin/catkin_make_isolated --install --install-space ${ROS_ROOT} -DCMAKE_BUILD_TYPE=Release && \
     rm -rf /var/lib/apt/lists/*
-
-
-# setup entrypoint
-COPY ./packages/ros_entrypoint.sh /ros_entrypoint.sh
-RUN echo 'source /opt/ros/${ROS_DISTRO}/setup.bash' >> /root/.bashrc
 
 
  # Install dependencies
