@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>robots_and_world</name>
+  <name>robots_worlds_objects</name>
   <version>0.0.0</version>
   <description>The navigation_resources package</description>
   <maintainer email="ronaldsonbellande@gmail.com">ronaldsonbellande</maintainer>

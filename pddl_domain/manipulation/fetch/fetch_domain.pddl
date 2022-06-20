@@ -1,10 +1,11 @@
-(define (domain fetch) ;;
+(define (domain fetch)
 
 (:requirements :strips :typing :fluents :disjunctive-preconditions :durative-actions)
 
 (:types
 	waypoint 
 	robot
+  update
 )
 
 (:predicates
@@ -16,7 +17,7 @@
 	(dock_at ?wp - waypoint)
 )
 
-;; Move to any waypoint, avoiding terrain
+;; Move arm to any waypoint or goal, avoiding obstacles
 (:durative-action goto_waypoint
 	:parameters (?v - robot ?from ?to - waypoint)
 	:duration ( = ?duration 1)
