@@ -18,7 +18,7 @@ RUN apt-get update -y
 RUN apt-get upgrade -y
 
 # RUN workspace and sourcing
-WORKDIR ./
+WORKDIR /home
 COPY requirements.txt .
 COPY system_requirements.txt .
 COPY ros_requirements.txt .
