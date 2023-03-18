@@ -1,4 +1,4 @@
-The following license applies to the entire contents of this directory (the "Contents") except where otherwise noted. The Contents consist of software and data used with the Stretch RE1 mobile manipulator, which is a robot produced and sold by Hello Robot Inc.
+The following license applies to the entire contents of this directory (the "Contents") except where otherwise noted. The Contents consist of software and data used with the Stretch RE1 mobile manipulator, which is a robots produced and sold by Hello Robot Inc.
 
 Copyright 2020 Hello Robot Inc.
 

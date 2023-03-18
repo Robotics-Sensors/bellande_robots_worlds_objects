@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="stretch_respeaker">
+<robots xmlns:xacro="http://www.ros.org/wiki/xacro" name="stretch_respeaker">
 
   <link name="respeaker_base">
     <inertial>
@@ -56,7 +56,7 @@
       xyz="0 0 0" />
   </joint>
   
-</robot>
+</robots>
 
   
 

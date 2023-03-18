@@ -326,7 +326,7 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
       Name: RobotModel
-      Robot Description: pioneer/robot_description
+      Robot Description: pioneer/robots_description
       TF Prefix: ""
       Update Interval: 0
       Value: true

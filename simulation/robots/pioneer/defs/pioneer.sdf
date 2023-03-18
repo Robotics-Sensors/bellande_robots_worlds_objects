@@ -14,7 +14,7 @@
           <izz>7.34415</izz>
         </inertia>
       </inertial>
-      <collision name='base_link_fixed_joint_lump__robot_collision_collision'>
+      <collision name='base_link_fixed_joint_lump__robots_collision_collision'>
         <pose frame=''>-0.045 0 0.148 0 -0 0</pose>
         <geometry>
           <box>
@@ -76,7 +76,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/csrobot/catkin_ws/src/robot_navigation/resources/models/pioneer/meshes/chassis.stl</uri>
+            <uri>file:///home/csrobots/catkin_ws/src/robots_navigation/resources/models/pioneer/meshes/chassis.stl</uri>
           </mesh>
         </geometry>
         <material>
@@ -91,7 +91,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/csrobot/catkin_ws/src/robot_navigation/resources/models/pioneer/meshes/back_sonar.stl</uri>
+            <uri>file:///home/csrobots/catkin_ws/src/robots_navigation/resources/models/pioneer/meshes/back_sonar.stl</uri>
           </mesh>
         </geometry>
         <material>
@@ -106,7 +106,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/csrobot/catkin_ws/src/robot_navigation/resources/models/pioneer/meshes/hokuyo.dae</uri>
+            <uri>file:///home/csrobots/catkin_ws/src/robots_navigation/resources/models/pioneer/meshes/hokuyo.dae</uri>
           </mesh>
         </geometry>
         <material>
@@ -121,7 +121,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/csrobot/catkin_ws/src/robot_navigation/resources/models/pioneer/meshes/front_sonar.stl</uri>
+            <uri>file:///home/csrobots/catkin_ws/src/robots_navigation/resources/models/pioneer/meshes/front_sonar.stl</uri>
           </mesh>
         </geometry>
         <material>
@@ -151,7 +151,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/csrobot/catkin_ws/src/robot_navigation/resources/models/pioneer/meshes/kinect.dae</uri>
+            <uri>file:///home/csrobots/catkin_ws/src/robots_navigation/resources/models/pioneer/meshes/kinect.dae</uri>
           </mesh>
         </geometry>
         <material>
@@ -166,7 +166,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/csrobot/catkin_ws/src/robot_navigation/resources/models/pioneer/meshes/top.stl</uri>
+            <uri>file:///home/csrobots/catkin_ws/src/robots_navigation/resources/models/pioneer/meshes/top.stl</uri>
           </mesh>
         </geometry>
         <material>
@@ -299,7 +299,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/csrobot/catkin_ws/src/robot_navigation/resources/models/pioneer/meshes/left_wheel.stl</uri>
+            <uri>file:///home/csrobots/catkin_ws/src/robots_navigation/resources/models/pioneer/meshes/left_wheel.stl</uri>
           </mesh>
         </geometry>
         <material>
@@ -314,7 +314,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/csrobot/catkin_ws/src/robot_navigation/resources/models/pioneer/meshes/left_hubcap.stl</uri>
+            <uri>file:///home/csrobots/catkin_ws/src/robots_navigation/resources/models/pioneer/meshes/left_hubcap.stl</uri>
           </mesh>
         </geometry>
         <material>
@@ -387,7 +387,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/csrobot/catkin_ws/src/robot_navigation/resources/models/pioneer/meshes/right_wheel.stl</uri>
+            <uri>file:///home/csrobots/catkin_ws/src/robots_navigation/resources/models/pioneer/meshes/right_wheel.stl</uri>
           </mesh>
         </geometry>
         <material>
@@ -402,7 +402,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/csrobot/catkin_ws/src/robot_navigation/resources/models/pioneer/meshes/right_hubcap.stl</uri>
+            <uri>file:///home/csrobots/catkin_ws/src/robots_navigation/resources/models/pioneer/meshes/right_hubcap.stl</uri>
           </mesh>
         </geometry>
         <material>
@@ -452,7 +452,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/csrobot/catkin_ws/src/robot_navigation/resources/models/pioneer/meshes/swivel.stl</uri>
+            <uri>file:///home/csrobots/catkin_ws/src/robots_navigation/resources/models/pioneer/meshes/swivel.stl</uri>
           </mesh>
         </geometry>
         <material>
@@ -518,7 +518,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/csrobot/catkin_ws/src/robot_navigation/resources/models/pioneer/meshes/center_wheel.stl</uri>
+            <uri>file:///home/csrobots/catkin_ws/src/robots_navigation/resources/models/pioneer/meshes/center_wheel.stl</uri>
           </mesh>
         </geometry>
         <material>
@@ -533,7 +533,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/csrobot/catkin_ws/src/robot_navigation/resources/models/pioneer/meshes/center_hubcap.stl</uri>
+            <uri>file:///home/csrobots/catkin_ws/src/robots_navigation/resources/models/pioneer/meshes/center_hubcap.stl</uri>
           </mesh>
         </geometry>
         <material>
@@ -575,11 +575,11 @@
       <wheelDiameter>0.18</wheelDiameter>
       <wheelTorque>5</wheelTorque>
       <wheelAcceleration>0</wheelAcceleration>
-      <robotNamespace>pioneer</robotNamespace>
+      <robotsNamespace>pioneer</robotsNamespace>
       <commandTopic>cmd_vel</commandTopic>
       <odometryTopic>odom</odometryTopic>
       <odometryFrame>odom</odometryFrame>
-      <robotBaseFrame>base_link</robotBaseFrame>
+      <robotsBaseFrame>base_link</robotsBaseFrame>
       <publishTf>1</publishTf>
       <publishWheelTF>true</publishWheelTF>
       <publishOdomTF>true</publishOdomTF>

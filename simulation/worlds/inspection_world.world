@@ -97,7 +97,7 @@
       <heading_deg>0</heading_deg>
     </spherical_coordinates>
 
-    <!-- Point the camera so the robot's in-frame -->
+    <!-- Point the camera so the robots's in-frame -->
     <gui fullscreen='0'>
       <camera name='user_camera'>
         <pose>22.956600 0.353438 8.717550 0.0 0.411643 -2.922991</pose>

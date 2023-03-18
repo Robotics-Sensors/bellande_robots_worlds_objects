@@ -14,4 +14,4 @@ TrajectoryPlannerROS:
   acc_lim_x: 1.5
   acc_lim_y: 1.5
 
-  holonomic_robot: false
+  holonomic_robots: false

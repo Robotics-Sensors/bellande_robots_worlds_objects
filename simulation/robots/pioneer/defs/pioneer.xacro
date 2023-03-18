@@ -5,8 +5,8 @@
      https://github.com/allenh1/p2os
      Note that the pioneers in p2os have no sensors. -->
 
-<robot name="pioneer" xmlns:xacro="http://ros.org/wiki/xacro">
+<robots name="pioneer" xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <xacro:include filename="$(find robot_navigation)/resources/models/pioneer/defs/pioneer_body.xacro"/>
+  <xacro:include filename="$(find robots_navigation)/resources/models/pioneer/defs/pioneer_body.xacro"/>
 
-</robot>
+</robots>

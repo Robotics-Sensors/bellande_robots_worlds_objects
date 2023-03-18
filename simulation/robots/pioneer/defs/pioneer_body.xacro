@@ -1,24 +1,24 @@
 <?xml version="1.0"?>
 
-<robot xmlns:xacro="http://ros.org/wiki/xacro">
+<robots xmlns:xacro="http://ros.org/wiki/xacro">
 
 	<!-- CONFIGURATION SETUP - - - - - - - - - - - - - - - - - - - - - - - - - -->
 	<!-- Load configuration settings for a frontal laser -->
-	<xacro:property name="front_yaml_file" value="$(find robot_navigation)/resources/config/pioneer/frontlaser_config.yaml" />
+	<xacro:property name="front_yaml_file" value="$(find robots_navigation)/resources/config/pioneer/frontlaser_config.yaml" />
 	<!-- Read all the yaml properties into a list named front_config -->
 	<xacro:property name="front_config" value="${load_yaml(front_yaml_file)}"/>
 	<!-- An example of how to access properties within the list -->
 	<xacro:property name="front_laser" value="${front_config['enabled']}" />
 
 	<!-- Load configuration settings for a rear laser -->
-	<xacro:property name="rear_yaml_file" value="$(find robot_navigation)/resources/config/pioneer/rearlaser_config.yaml" />
+	<xacro:property name="rear_yaml_file" value="$(find robots_navigation)/resources/config/pioneer/rearlaser_config.yaml" />
 	<!-- Read all the yaml properties into a list named rear_config -->
 	<xacro:property name="rear_config" value="${load_yaml(rear_yaml_file)}"/>
 	<!-- An example of how to access properties within the list -->
 	<xacro:property name="rear_laser" value="${rear_config['enabled']}" />
 
 	<!-- Load configuration settings for a kinect -->
-	<xacro:property name="kinect_yaml_file" value="$(find robot_navigation)/resources/config/pioneer/kinect_config.yaml" />
+	<xacro:property name="kinect_yaml_file" value="$(find robots_navigation)/resources/config/pioneer/kinect_config.yaml" />
 	<!-- Read all the yaml properties into a list named rear_config -->
 	<xacro:property name="kinect_config" value="${load_yaml(kinect_yaml_file)}"/>
 	<!-- An example of how to access properties within the list -->
@@ -27,11 +27,11 @@
 
 	<!-- LOAD MACROS - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 	<!-- Creates a macro for creating the wheel links (called towards the end of the file) -->
-	<xacro:include filename="$(find robot_navigation)/resources/models/pioneer/defs/pioneer_wheel.xacro"/>
+	<xacro:include filename="$(find robots_navigation)/resources/models/pioneer/defs/pioneer_wheel.xacro"/>
 	<!-- Creates a macro for adding laser sensors (called towards the end of the file) -->
-	<xacro:include filename="$(find robot_navigation)/resources/models/pioneer/defs/pioneer_lasers.xacro"/>
+	<xacro:include filename="$(find robots_navigation)/resources/models/pioneer/defs/pioneer_lasers.xacro"/>
 	<!-- Creates a macro for adding a kinect sensor (called towards the end of the file) -->
-	<xacro:include filename="$(find robot_navigation)/resources/models/pioneer/defs/pioneer_kinect.xacro"/>
+	<xacro:include filename="$(find robots_navigation)/resources/models/pioneer/defs/pioneer_kinect.xacro"/>
 
 
 	<!-- ROBOT DESCRIPTION - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -53,7 +53,7 @@
 				<color rgba="0.851 0.0 0.0 1.0"/>
 			</material>
 		</visual>
-		<collision name="robot_collision">
+		<collision name="robots_collision">
 			<origin xyz="-0.045 0 0.148" rpy="0 0 0"/>
 			<geometry>
 				<mesh filename="file://$(arg model_dir)/collision.stl"/>
@@ -64,13 +64,13 @@
 		<material value="Gazebo/Red"/>
 
 		<!-- Adds collision detection-->
-		<sensor type="contact" name="robot_contact_sensor">
+		<sensor type="contact" name="robots_contact_sensor">
 			<update_rate>20.0</update_rate>
 			<always_on>1</always_on>
 			<contact>
-				<collision>base_link_fixed_joint_lump__robot_collision_collision</collision>
+				<collision>base_link_fixed_joint_lump__robots_collision_collision</collision>
 			</contact>
-			<plugin name="robot_bumper_controller" filename="libgazebo_ros_bumper.so">
+			<plugin name="robots_bumper_controller" filename="libgazebo_ros_bumper.so">
 				<alwaysOn>true</alwaysOn>
 				<updateRate>20.0</updateRate>
 				<bumperTopicName>/bumper_contact</bumperTopicName>
@@ -288,7 +288,7 @@
 			<odometryTopic>odom</odometryTopic>
 			<odometryFrame>odom</odometryFrame>
 			<odometrySource>world</odometrySource>
-			<robotBaseFrame>base_link</robotBaseFrame>
+			<robotsBaseFrame>base_link</robotsBaseFrame>
 			<publishTf>1</publishTf>
 			<publishWheelTF>true</publishWheelTF>
 			<publishOdomTF>true</publishOdomTF>
@@ -325,4 +325,4 @@
 		<xacro:add_kinect descriptor="${kinect_config['descriptor']}" x="${kinect_config['x']}" y="${kinect_config['y']}" height="${kinect_config['height']}" pan="${kinect_config['pan']}" tilt="${kinect_config['tilt']}" far_clip="${kinect_config['far_clip']}"/>
 	</xacro:if>
 
-</robot>
+</robots>

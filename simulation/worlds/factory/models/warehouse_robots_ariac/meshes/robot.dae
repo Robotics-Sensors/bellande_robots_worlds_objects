@@ -188,7 +188,7 @@
   </library_lights>
   <library_images>
     <image id="MobileRobot_png">
-      <init_from>robot.png</init_from>
+      <init_from>robots.png</init_from>
     </image>
   </library_images>
   <library_visual_scenes>

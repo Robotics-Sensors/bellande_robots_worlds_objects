@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="stretch_dry_erase_marker">
+<robots xmlns:xacro="http://www.ros.org/wiki/xacro" name="stretch_dry_erase_marker">
 
   <xacro:property name="scale_finger_length" value="0.9" />
 
@@ -127,7 +127,7 @@
   </joint>
   
   
-</robot>
+</robots>
 
   
 

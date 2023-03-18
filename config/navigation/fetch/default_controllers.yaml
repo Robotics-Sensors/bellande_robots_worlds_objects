@@ -1,6 +1,6 @@
 arm_controller:
   follow_joint_trajectory:
-    type: "robot_controllers/FollowJointTrajectoryController"
+    type: "robots_controllers/FollowJointTrajectoryController"
     joints:
       - shoulder_pan_joint
       - shoulder_lift_joint
@@ -10,14 +10,14 @@ arm_controller:
       - wrist_flex_joint
       - wrist_roll_joint
   gravity_compensation:
-    type: "robot_controllers/GravityCompensation"
+    type: "robots_controllers/GravityCompensation"
     root: "torso_lift_link"
     tip: "gripper_link"
     autostart: true
 
 arm_with_torso_controller:
   follow_joint_trajectory:
-    type: "robot_controllers/FollowJointTrajectoryController"
+    type: "robots_controllers/FollowJointTrajectoryController"
     joints:
       - torso_lift_joint
       - shoulder_pan_joint
@@ -30,26 +30,26 @@ arm_with_torso_controller:
 
 torso_controller:
   follow_joint_trajectory:
-    type: "robot_controllers/FollowJointTrajectoryController"
+    type: "robots_controllers/FollowJointTrajectoryController"
     joints:
       - torso_lift_joint
 
 head_controller:
   point_head:
-    type: "robot_controllers/PointHeadController"
+    type: "robots_controllers/PointHeadController"
   follow_joint_trajectory:
-    type: "robot_controllers/FollowJointTrajectoryController"
+    type: "robots_controllers/FollowJointTrajectoryController"
     joints:
       - head_pan_joint
       - head_tilt_joint
 
 base_controller:
-  type: "robot_controllers/DiffDriveBaseController"
+  type: "robots_controllers/DiffDriveBaseController"
   autostart: true
 
 gripper_controller:
   gripper_action:
-    type: "robot_controllers/ParallelGripperController"
+    type: "robots_controllers/ParallelGripperController"
     centering:
       p: 1000.0
       d: 0.0
@@ -57,7 +57,7 @@ gripper_controller:
       i_clamp: 0.0
 
 bellows_controller:
-  type: "robot_controllers/ScaledMimicController"
+  type: "robots_controllers/ScaledMimicController"
   mimic_joint: "torso_lift_joint"
   controlled_joint: "bellows_joint"
   mimic_scale: 0.5

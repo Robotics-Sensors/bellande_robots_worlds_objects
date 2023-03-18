@@ -1,4 +1,4 @@
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="fetch" >
+<robots xmlns:xacro="http://www.ros.org/wiki/xacro" name="fetch" >
   <xacro:include filename="$(find fetch_description)/robots/fetch.urdf" />
 
   <!-- Base is modeled as a big tub sitting on floor, with two wheels -->
@@ -156,4 +156,4 @@
     <plugin name="fetch_gazebo_plugin" filename="libfetch_gazebo_plugin.so"/>
   </gazebo>
 
-</robot>
+</robots>

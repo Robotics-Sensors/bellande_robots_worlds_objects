@@ -1659,11 +1659,11 @@
       <commandTopic>cmd_vel</commandTopic>
       <odometryTopic>odom</odometryTopic>
       <odometryFrame>odom</odometryFrame>
-      <robotBaseFrame>base_footprint</robotBaseFrame>
-      <robotNamespace>/</robotNamespace>
+      <robotsBaseFrame>base_footprint</robotsBaseFrame>
+      <robotsNamespace>/</robotsNamespace>
     </plugin>
    <!--  <plugin name='gazebo_ros_control' filename='libgazebo_ros_control.so'>
-      <robotNamespace>/</robotNamespace>
+      <robotsNamespace>/</robotsNamespace>
     </plugin> -->
    <!-- <plugin name='p3d_base_controller' filename='libgazebo_ros_p3d.so'>
       <alwaysOn>true</alwaysOn>
@@ -1674,7 +1674,7 @@
       <frameName>map</frameName>
       <xyzOffsets>0 0 0</xyzOffsets>
       <rpyOffsets>0 0 0</rpyOffsets>
-      <robotNamespace>/</robotNamespace>
+      <robotsNamespace>/</robotsNamespace>
     </plugin> -->
   </model>
 </sdf>

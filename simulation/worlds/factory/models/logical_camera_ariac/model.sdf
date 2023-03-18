@@ -2,7 +2,7 @@
 <sdf version="1.6">
   <model name="logical_camera">
     <plugin name="ros_logical_camera" filename="libROSLogicalCameraPlugin.so">
-      <robotNamespace>ariac</robotNamespace>
+      <robotsNamespace>ariac</robotsNamespace>
       <position_noise>
         <noise>
           <type>gaussian</type>

@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <sdf version="1.6">
-  <model name="warehouse_robot">
+  <model name="warehouse_robots">
     <static>false</static>
     <link name="link">
       <inertial>
@@ -18,7 +18,7 @@
       <visual name="visual">
         <geometry>
           <mesh>
-            <uri>model://warehouse_robot/meshes/robot.dae</uri>
+            <uri>model://warehouse_robots/meshes/robots.dae</uri>
           </mesh>
         </geometry>
       </visual>

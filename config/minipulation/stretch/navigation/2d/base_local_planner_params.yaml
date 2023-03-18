@@ -11,8 +11,8 @@ TrajectoryPlannerROS:
   max_vel_theta: 0.25
   min_vel_theta: -0.25
   min_in_place_vel_theta: 0.3
-  holonomic_robot: false
-  # base vel/accel profile is in robot folders
+  holonomic_robots: false
+  # base vel/accel profile is in robots folders
   # tolerances (defaults)
   yaw_goal_tolerance: 0.1
   xy_goal_tolerance: 0.1

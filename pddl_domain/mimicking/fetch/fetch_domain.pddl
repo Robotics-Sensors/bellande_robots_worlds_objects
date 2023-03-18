@@ -4,35 +4,35 @@
 
 (:types
 	waypoint 
-	robot
+	robots
 )
 
 (:predicates
-	(robot_at ?v - robot ?wp - waypoint)
+	(robots_at ?v - robots ?wp - waypoint)
 	(visited ?wp - waypoint)
-	(undocked ?v - robot)
-	(docked ?v - robot)
-	(localised ?v - robot)
+	(undocked ?v - robots)
+	(docked ?v - robots)
+	(localised ?v - robots)
 	(dock_at ?wp - waypoint)
 )
 
 ;; Move to any waypoint, avoiding terrain
 (:durative-action goto_waypoint
-	:parameters (?v - robot ?from ?to - waypoint)
+	:parameters (?v - robots ?from ?to - waypoint)
 	:duration ( = ?duration 1)
 	:condition (and
-		(at start (robot_at ?v ?from))
+		(at start (robots_at ?v ?from))
 		(at start (localised ?v))
 		(over all (undocked ?v)))
 	:effect (and
 		(at end (visited ?to))
-		(at end (robot_at ?v ?to))
-		(at start (not (robot_at ?v ?from))))
+		(at end (robots_at ?v ?to))
+		(at start (not (robots_at ?v ?from))))
 )
 
 ;; Localise
 (:durative-action localise
-	:parameters (?v - robot)
+	:parameters (?v - robots)
 	:duration ( = ?duration 1)
 	:condition (over all (undocked ?v))
 	:effect (at end (localised ?v))
@@ -40,11 +40,11 @@
 
 ;; Dock to charge
 (:durative-action dock
-	:parameters (?v - robot ?wp - waypoint)
+	:parameters (?v - robots ?wp - waypoint)
 	:duration ( = ?duration 3)
 	:condition (and
 		(over all (dock_at ?wp))
-		(at start (robot_at ?v ?wp))
+		(at start (robots_at ?v ?wp))
 		(at start (undocked ?v)))
 	:effect (and
 		(at end (docked ?v))
@@ -52,7 +52,7 @@
 )
 
 (:durative-action undock
-	:parameters (?v - robot ?wp - waypoint)
+	:parameters (?v - robots ?wp - waypoint)
 	:duration ( = ?duration 2)
 	:condition (and
 		(over all (dock_at ?wp))

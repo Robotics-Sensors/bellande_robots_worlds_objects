@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 
-<robot xmlns:xacro="http://ros.org/wiki/xacro">
+<robots xmlns:xacro="http://ros.org/wiki/xacro">
 
   <!-- Define a macro to add a kinect sensor to the model based on given parameters. -->
   <xacro:macro name="add_kinect" params="descriptor x y height pan tilt far_clip">
-    <xacro:property name="robot_height" value="0.24" />
-    <xacro:property name="stand_length" value="${ height - robot_height - 0.045 }" />
-    <xacro:property name="stand_height" value="${ robot_height + (stand_length / 2) }" />
+    <xacro:property name="robots_height" value="0.24" />
+    <xacro:property name="stand_length" value="${ height - robots_height - 0.045 }" />
+    <xacro:property name="stand_height" value="${ robots_height + (stand_length / 2) }" />
 
     <link name='${descriptor}_camera_link'>
       <inertial>
@@ -138,4 +138,4 @@
 
   </xacro:macro>
 
-</robot>
+</robots>

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<robot xmlns:xacro="http://ros.org/wiki/xacro">
+<robots xmlns:xacro="http://ros.org/wiki/xacro">
 
   <!-- Define a macro to add a laser sensor to the model based on given parameters. -->
   <xacro:macro name="add_laser" params="descriptor visualize x y z yaw min max samples range">
@@ -54,7 +54,7 @@
           </range>
         </ray>
         <plugin name='${descriptor}laser' filename='libgazebo_ros_laser.so'>
-          <!-- model_name is an argument sent to the top level xml file (when setting robot_description) -->
+          <!-- model_name is an argument sent to the top level xml file (when setting robots_description) -->
           <topicName>${descriptor}scan</topicName>
           <frameName>hokuyo_${descriptor}_link</frameName>
         </plugin>
@@ -73,4 +73,4 @@
 
   </xacro:macro>
 
-</robot>
+</robots>

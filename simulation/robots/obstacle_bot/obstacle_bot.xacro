@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
-<robot name="obstacle_bot" xmlns:xacro="http://ros.org/wiki/xacro">
+<robots name="obstacle_bot" xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <xacro:property name="robot_height" value="1.0" />
-  <xacro:property name="robot_radius" value="0.25" />
+  <xacro:property name="robots_height" value="1.0" />
+  <xacro:property name="robots_radius" value="0.25" />
   <xacro:property name="antenna_len" value="0.2" />
   <xacro:property name="tf_prefix" value="$(arg tf_prefix)" />
 
-  <!-- <xacro:property name="robot_height" value="$(arg height)" />
-  <xacro:property name="robot_radius" value="$(arg radius)" /> -->
+  <!-- <xacro:property name="robots_height" value="$(arg height)" />
+  <xacro:property name="robots_radius" value="$(arg radius)" /> -->
 
   <!-- root link, on the ground just below the model origin -->
   <link name="${tf_prefix}base_footprint">
    <origin xyz="0 0 0" rpy="0 0 0" />
    <visual>
-      <origin xyz="0 0 ${robot_height+(antenna_len/2)}" rpy="0 0 0" />
+      <origin xyz="0 0 ${robots_height+(antenna_len/2)}" rpy="0 0 0" />
       <geometry>
         <cylinder radius="0.01" length="${antenna_len}" />
       </geometry>
@@ -31,7 +31,7 @@
     <inertial>
       <mass value="50" />
       <!-- SUBTERRANIAN MASS -->
-      <origin xyz="0 0 -${(robot_height/2)+0.05}" />
+      <origin xyz="0 0 -${(robots_height/2)+0.05}" />
       <inertia ixx="50.0" ixy="0.0" ixz="0.0"
                iyy="50.0" iyz="0.0"
                izz="50.0" />
@@ -39,7 +39,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 1.5708"/>
       <geometry>
-        <cylinder radius="${robot_radius}" length="${robot_height}" />
+        <cylinder radius="${robots_radius}" length="${robots_height}" />
       </geometry>
       <material name="Orange">
         <color rgba="1 0.64 0 1" />
@@ -48,7 +48,7 @@
     <collision>
       <origin xyz="0 0 0" />
       <geometry>
-        <cylinder radius="${robot_radius}" length="${robot_height}" />
+        <cylinder radius="${robots_radius}" length="${robots_height}" />
       </geometry>
     </collision>
   </link>
@@ -141,7 +141,7 @@
         </range>
       </ray>
       <plugin name='$(arg model_name)_laser' filename='libgazebo_ros_laser.so'>
-        <!-- model_name is an argument sent to the top level xml file (when setting robot_description) -->
+        <!-- model_name is an argument sent to the top level xml file (when setting robots_description) -->
         <topicName>$(arg model_name)/scan</topicName>
         <frameName>${tf_prefix}scan_link</frameName>
       </plugin>
@@ -152,19 +152,19 @@
   </gazebo>
 
   <joint name="${tf_prefix}base_link_joint" type="fixed">
-    <origin xyz="0 0 ${robot_height/2}" rpy="0 0 0" />
+    <origin xyz="0 0 ${robots_height/2}" rpy="0 0 0" />
     <parent link="${tf_prefix}base_footprint"/>
     <child link="${tf_prefix}base_link" />
   </joint>
 
   <joint name="${tf_prefix}antenna_link_joint" type="fixed">
-    <origin xyz="0 0 ${robot_height+antenna_len}" rpy="0 0 0" />
+    <origin xyz="0 0 ${robots_height+antenna_len}" rpy="0 0 0" />
     <parent link="${tf_prefix}base_footprint"/>
     <child link="${tf_prefix}antenna_link" />
   </joint>
 
   <joint name="${tf_prefix}directional_link_joint" type="fixed">
-    <origin xyz="${robot_radius-0.01} 0 -${3*(robot_height/8)}" rpy="0 0 0.785398" />
+    <origin xyz="${robots_radius-0.01} 0 -${3*(robots_height/8)}" rpy="0 0 0.785398" />
     <parent link="${tf_prefix}base_link"/>
     <child link="${tf_prefix}directional_link" />
   </joint>
@@ -181,8 +181,8 @@
       <odometryTopic>$(arg model_name)/odom</odometryTopic>
       <odometryFrame>${tf_prefix}odom</odometryFrame>
       <odometryRate>20.0</odometryRate>
-      <robotBaseFrame>${tf_prefix}base_footprint</robotBaseFrame>
+      <robotsBaseFrame>${tf_prefix}base_footprint</robotsBaseFrame>
     </plugin>
   </gazebo>
 
-</robot>
+</robots>
