@@ -1,0 +1,3 @@
+catkin build robots_navigation
+catkin build robots_navigation_path_planner
+catkin build robots_navigation_resources
