@@ -1,0 +1,37 @@
+<?xml version='1.0'?>
+<sdf version='1.6'>
+  <model name='1cm_cube'>
+    <link name='cube'>
+      <pose frame=''>0.005 0.005 0.005 0 0 0</pose>
+      <visual name='visual'>
+        <pose frame=''>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.01 0.01 0.01</size>
+          </box>
+        </geometry>
+        <material>
+          <lighting>1</lighting>
+          <script>
+            <uri>file://media/materials/scripts/caution.material</uri>
+            <name>Caution/Orange3</name>
+          </script>
+          <ambient>1 1 1 1</ambient>
+        </material>
+        <cast_shadows>1</cast_shadows>
+        <transparency>0</transparency>
+      </visual>
+      <collision name='collision'>
+        <geometry>
+          <box>
+            <size>0.01 0.01 0.01</size>
+          </box>
+        </geometry>
+        <pose frame=''>0 0 0 0 0 0</pose>
+      </collision>
+    </link>
+    <static>1</static>
+    <allow_auto_disable>1</allow_auto_disable>
+    <pose frame=''>0 0 0 0 0 0</pose>
+  </model>
+</sdf>

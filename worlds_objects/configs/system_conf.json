@@ -1,0 +1,122 @@
+{
+  "structure": {}
+  "dataset": {
+    "dataset_path": "fruits_360_datasets/Training_Small/",
+    "valid_images": [
+      ".json",
+      ".png"
+    ]
+  },
+  "model_architecture_h5": {
+    "model1": "model1_architecture_4.h5",
+    "personal_model": "personal_model_architecture_4.h5",
+    "unet_model": "unet_model_architecture_4.h5",
+    "vit_transformer_shift": "vit_transformer_shift_model_architecture_4.h5",
+    "vit_transformer_shift_noise": "vit_transformer_shift_noise_model_architecture_4.h5",
+  },
+  "model_architecture_pd": {
+    "model1": "model1_architecture_4.pd",
+    "personal_model": "personal_model_architecture_4.pd",
+    "unet_model": "unet_model_architecture_4.pd",
+    "vit_transformer_shift": "vit_transformer_shift_model_architecture_4.pd",
+    "vit_transformer_shift_noise": "vit_transformer_shift_noise_model_architecture_4.pd",
+  },
+  "model": {
+    "batch": 10,
+    "epochs": 200
+    "optimizer": {
+      "lr": 0.0001,
+      "beta_1": 0.9,
+      "beta_2": 0.999
+    }
+  },
+  "building": {
+    "model_summary": "model_summary/",
+    "model_parameters": "model_architecture_parameters/",
+    "model_image": "model_architecture_image/",
+    "model_h5": "model_architecture_h5/",
+    "model_pb": "model_architecture_pb/",
+    "model_onnx": "model_architecture_onnx"
+  },
+  "training": {
+    "number_images_to_plot": 16,
+    "graph_path": "graph_charts/",
+    "model_path": "models/"
+  },
+  "transfer_learning": {
+    "number_images_to_plot": 16,
+    "graph_path": "graph_charts/transfer_learning_with_model/",
+    "model_path": "models/transfer_learning/"
+  },
+  "prediction": {
+    "optimizer": "adam",
+    "loss": "mean_squared_error"
+  },
+  "classification": {
+    "optimizer": "adam"
+  },
+  "classification_localization": {
+    "optimizer": "adam"
+  },
+  "semantic_segmentation": {
+    "shape": 32
+  },
+  "instance_segmentation": {
+    "value": 1
+  },
+  "continuous_learning": {
+    "number_images_to_plot": 16,
+    "algorithm_details": "graph_charts/algorithm_details/",
+    "model_detail": "graph_charts/model_details/",
+    "graph_path": "graph_charts/continuous_learning_with_models/",
+    "model_path": "models/continuous_learning/",
+    "system": {
+      "episode": 40,
+      "episode_reached": 20,
+      "step_limit": 300,
+      "future_sight": 200,
+      "count_learning_repeat": 200,
+      "starting_epsilon": 0.999,
+      "starting_rolling_epsilon": 0.999,
+      "starting_immediate_vs_future_action_epsilon": 0.999,
+      "delay_epsilon": 0.995,
+      "epsilon_restart": 0.2,
+      "min_epsilon": 0.1,
+      "error_rate": 5,
+      "repeat_ranges": 5,
+      "exploration_decay": 0.95,
+      "delay_memory": 50000,
+      "number_of_node": 6,
+      "done_importance": 2,
+      "gamma": 0.95,
+      "theta": 0.5,
+      "state_space": 3,
+      "action_space": 4,
+      "cost": 100,
+      "back_propagation": 5,
+      "learning_rate": 0.001,
+      "target_update_counter": 0.001,
+      "cost_update_counter": 0.001,
+      "target_update": 2,
+      "cost_update": 2,
+      "noise": 0.0,
+      "reward_noise": 0.0,
+      "state_world_size": 400,
+      "deep_search_tree": {
+        "c_param": 1.4
+      }
+    },
+    "enviroment": {
+      "lower_bound_range": -7,
+      "upper_bound_range": 3,
+      "delta": 0.1,
+      "precision_value": 1,
+      "reward_multiplier": 1000,
+      "reward_max_min": 2,
+      "cost_multiplier_div": 3
+    },
+  },
+  "detection": {
+    "loss": "mean_squared_error"
+  },
+}
