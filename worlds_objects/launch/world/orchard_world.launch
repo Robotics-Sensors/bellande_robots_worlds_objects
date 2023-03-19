@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<launch>
+  <param name="orchard_geom" command="$(find xacro)/xacro --inorder '$(find robots_and_world)/urdf/orchard_geometry.urdf.xacro'" />
+
+  <arg name="use_sim_time" default="true" />
+  <arg name="gui" default="true" />
+  <arg name="headless" default="false" />
+  <arg name="world_name" default="$(find robots_and_world)/worlds/actually_empty_world.world" />
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="debug" value="0" />
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="use_sim_time" value="$(arg use_sim_time)" />
+    <arg name="headless" value="$(arg headless)" />
+    <arg name="world_name" value="$(arg world_name)" />
+  </include>
+
+  <node name="orchard_gazebo_spawner" pkg="gazebo_ros" type="spawn_model" args="-urdf -model orchard_geom -param orchard_geom -x 0 -y 0 -z 0 -Y 0" />
+
+</launch>
