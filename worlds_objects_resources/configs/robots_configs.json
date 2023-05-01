@@ -1,0 +1,6 @@
+{
+  "grpc_client": {
+    "host": "robots_reverse_proxy",
+    "port": "9012"
+  }
+}
