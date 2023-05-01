@@ -1,1 +1,2 @@
 catkin build worlds_objects
+catkin build worlds_objects_resources
