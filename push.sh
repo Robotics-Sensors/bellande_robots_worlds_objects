@@ -59,6 +59,17 @@ done
 git remote add origin "$remote_repo_url"
 git push --force --set-upstream origin main
 
+# Fetch the changes from the remote repository
+git -C "$current_dir" fetch origin
+
+# Merge the remote changes into the local repository
+git -C "$current_dir" merge origin/main --no-edit
+
+# Update the local repository and reduce the size of .git if needed
+git -C "$current_dir" gc --prune=now
+git -C "$current_dir" reflog expire --expire=now --all
+git -C "$current_dir" repack -ad
+
 # Clean up temporary files and directories
 cd "$current_dir"
 rm -rf "$temp_dir"
