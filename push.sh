@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Git push what is already in the repository
+git pull; git fetch; git add .; git commit -am "latest pushes"; git push
+
 # Get the current directory
 current_dir=$(pwd)
 
