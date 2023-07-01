@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Git push what is already in the repository
-git pull; git fetch; git add .; git commit -am "latest pushes"; git push
+git pull --no-edit; git fetch; git add .; git commit -am "latest pushes"; git push
 
 # Get the current directory
 current_dir=$(pwd)
@@ -20,6 +20,24 @@ cd "$temp_dir"
 
 # Create a temporary file to store the file list
 tmp_file=$(mktemp)
+# Create a temporary file to store the processed commits
+processed_commits_file=$(mktemp)
+
+# Function to check if a commit has already been processed
+is_commit_processed() {
+  local commit="$1"
+
+  # Check if the commit is already processed
+  grep -Fxq "$commit" "$processed_commits_file"
+}
+
+# Function to mark a commit as processed
+mark_commit_processed() {
+  local commit="$1"
+
+  # Mark the commit as processed
+  echo "$commit" >> "$processed_commits_file"
+}
 
 # Function to check if a file or folder exists in the repository
 file_exists_in_repo() {
@@ -32,6 +50,12 @@ file_exists_in_repo() {
 # Function to process the files and folders in each commit
 process_commit_files() {
   local commit="$1"
+
+  # Check if the commit has already been processed
+  if is_commit_processed "$commit"; then
+    echo "Commit $commit already processed. Skipping..."
+    return
+  fi
 
   # Get the list of files and folders in the commit (including subfolders)
   git ls-tree --name-only -r "$commit" >> "$tmp_file"
@@ -48,6 +72,9 @@ process_commit_files() {
     fi
   done < "$tmp_file"
 
+  # Mark the commit as processed
+  mark_commit_processed "$commit"
+
   # Clear the temporary file
   > "$tmp_file"
 }
@@ -60,7 +87,10 @@ done
 
 # Push the filtered changes to the original repository
 git remote add origin "$remote_repo_url"
-git push --force --set-upstream origin main
+git push --force origin main
+
+# Perform a history rewrite to remove the filtered files
+git filter-repo --force
 
 # Fetch the changes from the remote repository
 git -C "$current_dir" fetch origin
@@ -77,3 +107,4 @@ git -C "$current_dir" repack -ad
 cd "$current_dir"
 rm -rf "$temp_dir"
 rm "$tmp_file"
+rm "$processed_commits_file"
