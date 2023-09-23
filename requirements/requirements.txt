@@ -29,6 +29,9 @@ nvidia-ml-py3
 imgaug
 tqdm
 rosdep
+colcon-common-extensions
+colcon-ros-bundle
+
 
 protobuf==3.15.2
 numpy==1.19.2 
