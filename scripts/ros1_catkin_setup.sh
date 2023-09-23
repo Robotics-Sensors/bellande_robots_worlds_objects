@@ -1,5 +1,6 @@
 #!/bin/bash
 
+CATKIN_WS="../../../.."
+
 catkin build 
-source "/opt/ros/noetic/setup.bash"
 source "$CATKIN_WS/devel/setup.bash"
