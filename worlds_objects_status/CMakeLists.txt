@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(worlds_objects)
+project(worlds_objects_status)
 
 # Find ROS
 if($ENV{ROS_VERSION} EQUAL 1)
