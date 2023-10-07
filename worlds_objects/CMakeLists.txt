@@ -16,8 +16,6 @@ if($ENV{ROS_VERSION} EQUAL 1)
     #  CATKIN_DEPENDS other_catkin_pkg
     #  DEPENDS system_lib
   )
-else()
-  ament_package()
 endif()
 
 ###########
