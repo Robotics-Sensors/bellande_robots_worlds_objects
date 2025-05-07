@@ -39,4 +39,6 @@ numba==0.55.2
 imageio==2.9.0
 pillow==10.3.0
 tensorflow==2.7.0
+pillow==7.2.0
+tensorflow==2.12.1
 keras==2.7.0
